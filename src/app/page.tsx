@@ -1,6 +1,6 @@
 'use client';
 
-// import { createTask } from './actions/create-task';
+import { createTask } from './actions/create-task';
 
 export default function Home() {
   const handleSubmit = async (formData: FormData) => {
@@ -15,7 +15,7 @@ export default function Home() {
     };
 
     console.log(task);
-    // await createTask(task);
+    await createTask(task);
   };
 
   return (
