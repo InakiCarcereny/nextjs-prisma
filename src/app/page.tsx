@@ -1,37 +1,25 @@
-'use client';
-
-import { createTask } from './actions/create-task';
+import { Suspense } from 'react';
+import { UserList } from './components/UserList';
+import { UsersForm } from './components/UsersForm';
+import { TaskForm } from './components/TaskForm';
+import { TaskList } from './components/TaskList';
 
 export default function Home() {
-  const handleSubmit = async (formData: FormData) => {
-    const title = formData.get('name');
-    const description = formData.get('description');
-    const priority = formData.get('priority');
-
-    const task = {
-      name: title,
-      description,
-      priority,
-    };
-
-    console.log(task);
-    await createTask(task);
-  };
-
   return (
-    <>
-      <div>NextJS + Prisma + MySQL</div>
+    <div className="flex flex-col gap-4">
+      <h1>Hello Prisma</h1>
 
-      <form action={handleSubmit}>
-        <input type="text" name="name" placeholder="Task name" />
-        <input type="text" name="description" placeholder="Task description" />
-        <select name="priority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <button type="submit">Create task</button>
-      </form>
-    </>
+      <UsersForm />
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <UserList />
+      </Suspense>
+
+      <TaskForm />
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <TaskList />
+      </Suspense>
+    </div>
   );
 }
