@@ -20,7 +20,7 @@ export function Task({
   return (
     <li className="flex items-center gap-2">
       <h3>{name}</h3>
-      <p>{description}</p>
+      <p>{description}.</p>
       <p>{priority}</p>
       <span>{id}</span>
       <span>{userEmail}</span>
